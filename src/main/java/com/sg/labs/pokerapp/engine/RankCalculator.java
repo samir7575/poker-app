@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -55,18 +56,36 @@ public class RankCalculator {
         Hand winner = null;
         CardValueEnum cardValueOfWin = null;
         if(this.blackPlayer.getHandOrder().ordinal() == this.whitePlayer.getHandOrder().ordinal()) {
-            CardValueEnum highestBlack = Collections.max(this.blackPlayer.getCards().stream().map(Card::getCardValue).collect(Collectors.toList()));
-            CardValueEnum highestWhite = Collections.max(this.whitePlayer.getCards().stream().map(Card::getCardValue).collect(Collectors.toList()));
-            if(highestBlack.ordinal() == highestWhite.ordinal()) {
+            List<CardValueEnum> blackList = this.blackPlayer.getCards().stream().map(Card::getCardValue).collect(Collectors.toList());
+            List<CardValueEnum> whiteList = this.whitePlayer.getCards().stream().map(Card::getCardValue).collect(Collectors.toList());
+
+            List<CardValueEnum> differencesBlackList = blackList.stream()
+                    .filter(element -> !whiteList.contains(element))
+                    .collect(Collectors.toList());
+
+            if(differencesBlackList.size() == 0) {
                 // Tiebreak , no  winner
                 winner = null;
-            } else if(highestBlack.ordinal() > highestWhite.ordinal()){
-                winner = blackPlayer;
-                cardValueOfWin = highestBlack;
-            } else if(highestBlack.ordinal() < highestWhite.ordinal()){
-                winner = whitePlayer;
-                cardValueOfWin = highestWhite;
+            } else {
+                List<CardValueEnum> differencesWhiteList = whiteList.stream()
+                        .filter(element -> !blackList.contains(element))
+                        .collect(Collectors.toList());
+
+                CardValueEnum highestBlack = Collections.max(differencesBlackList.stream().collect(Collectors.toList()));
+                CardValueEnum highestWhite = Collections.max(differencesWhiteList.stream().collect(Collectors.toList()));
+                if(highestBlack.ordinal() == highestWhite.ordinal()) {
+                    // Tiebreak , no  winner
+                    winner = null;
+                } else if(highestBlack.ordinal() > highestWhite.ordinal()){
+                    winner = blackPlayer;
+                    cardValueOfWin = highestBlack;
+                } else if(highestBlack.ordinal() < highestWhite.ordinal()){
+                    winner = whitePlayer;
+                    cardValueOfWin = highestWhite;
+                }
             }
+
+
 
         } else if(this.blackPlayer.getHandOrder().ordinal() > this.whitePlayer.getHandOrder().ordinal()) {
             winner = this.blackPlayer;

@@ -76,7 +76,7 @@ class RankCalculatorTest {
                         Card.domainBuilder().cardValue(CardValueEnum.THREE).cardSuit(CardSuitEnum.DIAMOND).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.FIVE).cardSuit(CardSuitEnum.SPADE).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.NINE).cardSuit(CardSuitEnum.CLUB).build(),
-                        Card.domainBuilder().cardValue(CardValueEnum.SIX).cardSuit(CardSuitEnum.DIAMOND).build()
+                        Card.domainBuilder().cardValue(CardValueEnum.KING).cardSuit(CardSuitEnum.DIAMOND).build()
                 )
         ).build();
 
@@ -85,7 +85,7 @@ class RankCalculatorTest {
                         Card.domainBuilder().cardValue(CardValueEnum.THREE).cardSuit(CardSuitEnum.HEART).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.FOUR).cardSuit(CardSuitEnum.SPADE).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.EIGHT).cardSuit(CardSuitEnum.CLUB).build(),
-                        Card.domainBuilder().cardValue(CardValueEnum.SIX).cardSuit(CardSuitEnum.HEART).build()
+                        Card.domainBuilder().cardValue(CardValueEnum.KING).cardSuit(CardSuitEnum.HEART).build()
                 )
         ).build();
 
@@ -112,8 +112,8 @@ class RankCalculatorTest {
         Hand whitePlayer = Hand.domainBuilder().cards(Arrays.asList(
                         Card.domainBuilder().cardValue(CardValueEnum.TWO).cardSuit(CardSuitEnum.CLUB).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.THREE).cardSuit(CardSuitEnum.HEART).build(),
-                        Card.domainBuilder().cardValue(CardValueEnum.FOUR).cardSuit(CardSuitEnum.SPADE).build(),
-                        Card.domainBuilder().cardValue(CardValueEnum.EIGHT).cardSuit(CardSuitEnum.CLUB).build(),
+                        Card.domainBuilder().cardValue(CardValueEnum.FIVE).cardSuit(CardSuitEnum.SPADE).build(),
+                        Card.domainBuilder().cardValue(CardValueEnum.NINE).cardSuit(CardSuitEnum.CLUB).build(),
                         Card.domainBuilder().cardValue(CardValueEnum.KING).cardSuit(CardSuitEnum.HEART).build()
                 )
         ).build();
